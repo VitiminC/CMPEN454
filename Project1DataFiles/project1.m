@@ -25,5 +25,3 @@ for d = 1:length(layertypes)
     end
 end
 %% 
-
-norm = double(imrgb)/255.0-0.5;

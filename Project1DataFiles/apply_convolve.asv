@@ -1,0 +1,18 @@
+%Convolution Function
+function output = apply_convolve(x,filter,bias)
+x = double(x);
+output = zeros(size(x,1),size(x,2),size(filter,4));
+
+d1 = size(x,3);
+
+d2 = size(filter,4);
+
+for i=1:d2
+    %for k=1:d1
+    
+    temp = imfilter(x,filter(:,:,:,i));
+    tempsum = sum(temp,3);
+    output(:,:,i) = tempsum + bias(i);
+end
+
+

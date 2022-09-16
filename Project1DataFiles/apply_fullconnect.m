@@ -12,15 +12,16 @@ d2 = size(filter,4);
 %    output(:,:,i) = tempsum + bias(i);
 %end
 
-for i=1:d2
-    %for k=1:d1
-    temp_matrix = zeros(size(x));
-    for j = 1:size(x,3)
-    temp = imfilter(x(:,:,j),filter(:,:,j,i));
-    temp_matrix(:,:,j) = temp;
+for i=1:d2 % index filter
+    sum = 0;
+    for j = 1:size(x,3) % index channel
+        for k = 1:size(x,2) % index column
+            for z = 1:size(x,1) %index row
+                sum = sum + x(z,k,j) * filter(z,k,j,i);
+            end
+        end
     end
-    temp_sum = sum(temp_matrix,'all');
-    output(:,:,i) = temp_sum + bias(i);
+    output(:,:,i) = sum + bias(i);
 end
 
 end

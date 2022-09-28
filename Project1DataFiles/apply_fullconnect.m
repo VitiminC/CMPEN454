@@ -6,12 +6,6 @@ output = zeros(1,1,size(filter,4));
 
 d2 = size(filter,4);
 
-%for i=1:d2  
-%    temp = imfilter(x,filter(:,:,:,i));
-%    tempsum = sum(temp,"all");
-%    output(:,:,i) = tempsum + bias(i);
-%end
-
 for i=1:d2 % index filter
     sum = 0;
     for j = 1:size(x,3) % index channel

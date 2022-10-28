@@ -4,7 +4,7 @@ x = double(x);
 
 alpha = max(x,[],"all");
 
-output = (exp(x) - alpha)/sum((exp(x) - alpha),'all');
+output = exp(x - alpha)/sum(exp(x - alpha),'all');
 
 end
 

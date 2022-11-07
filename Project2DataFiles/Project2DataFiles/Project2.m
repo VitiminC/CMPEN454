@@ -21,9 +21,9 @@ for point = 1:39
     rotation(1:3,1:3) = parameter1.Rmat;
     rotation(4,4) = 1;
     temp(:,point) =  translation * [tDpoint; 1];
-
-    temp2(1,point) = temp(1,point) / temp(3,point);
-    temp2(2,point) = temp(2,point) / temp(3,point);
+    
+    temp2(1,point) = temp(1,point)/temp(3,point);
+    temp2(2,point) = temp(2,point)/temp(3,point);
     temp2(3,point) = 1;
 
     temp3(:,point) = parameter1.Kmat * temp2(:,point);

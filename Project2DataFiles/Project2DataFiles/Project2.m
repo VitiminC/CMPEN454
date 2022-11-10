@@ -52,3 +52,20 @@ end
 
 res1 = temp3(1:2,:);
 res2 = dtemp3(1:2,:);
+
+im = imread('im1corrected.jpg');
+im2 = imread('im2corrected.jpg');
+figure(1); imagesc(im);
+hold on;
+for i=1:size(res1,2)
+    h = plot(res1(1,i),res1(2,i),'*'); 
+    set(h,'Color','r','LineWidth',2);
+end
+hold off;
+figure(2); imagesc(im2);
+hold on;
+for i=1:size(res2,2)
+    h = plot(res2(1,i),res2(2,i),'*'); 
+    set(h,'Color','r','LineWidth',2);
+end
+hold off;

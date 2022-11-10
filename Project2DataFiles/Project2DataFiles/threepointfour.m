@@ -9,15 +9,19 @@ im = imread('im1corrected.jpg');
 im2 = imread('im2corrected.jpg');
 figure(1); imagesc(im);
 hold on;
-h = plot(res1(1,30),res1(2,30)); 
+for i=1:30
+h = plot(res1(1,i),res1(2,i)); 
 set(h,'Color','r','LineWidth',4,'Marker','*');
+end
 hold off;
 
 figure(2); imagesc(im2);
 hold on;
-epipolarLineOnC2 = fundamentalC2C1 * [res1(:,30);1];
+for i=1:30
+epipolarLineOnC2 = fundamentalC2C1 * [res1(:,i);1];
 x = [200:10:1600];
 y = -(epipolarLineOnC2(1) * x + epipolarLineOnC2(3))/epipolarLineOnC2(2);
 h = plot(x,y);
-set(h,'Color','r','LineWidth',2,'Marker','*');
+set(h,'Color','r','LineWidth',1);
+end
 hold off;

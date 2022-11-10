@@ -1,3 +1,5 @@
+close all;
+
 c1 = zeros(3,39);
 c2 = zeros(3,39);
 v1 = zeros(3,39);
@@ -16,3 +18,6 @@ for pix = 1:39
     lambda = inv(v_vec)*(c2(1:2,pix) - c1(1:2,pix));
     result(:,pix) = c1(:,pix) + v1(:,pix)*lambda(1);
 end
+
+disp('The difference between the first 8 of the reconstructed points and the original points are: ');
+disp(result(:,1:8) - points(:,1:8));

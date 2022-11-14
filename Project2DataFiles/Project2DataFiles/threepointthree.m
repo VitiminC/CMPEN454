@@ -55,7 +55,7 @@ cp = cross(v1_tht,v2_tht);
 cp = cp./norm(cp);
 d = dot(cp, result_tpt_t(3,:));
 
-disp("----— 3.3 (a) RESULT SUMMARY -----")
+disp("----— 3.3 RESULT SUMMARY -----")
 disp("The three coordinates in the 3D world has coordinations (each row is a point):");
 disp(result_tpt_t);
 disp("The plane that fits to those points is:");

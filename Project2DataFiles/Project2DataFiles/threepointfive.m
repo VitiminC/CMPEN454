@@ -6,7 +6,9 @@ figure(1); imagesc(im); axis image; drawnow;
 figure(2); imagesc(im2); axis image; drawnow;
 
 
-figure(1); [x1,y1] = getpts;
+x1 = 1.0e+03 * [1.1288; 1.4303; 1.6820; 0.9298; 1.5093; 0.9795; 0.3327; 1.8722];
+y1 = [293.1829; 222.9390; 571.2317; 600.5000; 711.7195; 937.0854; 708.7927; 942.9390];
+
 figure(1); imagesc(im); axis image; hold on
 for i=1:length(x1)
    h=plot(x1(i),y1(i),'*'); set(h,'Color','g','LineWidth',2);
@@ -17,7 +19,8 @@ drawnow;
 
 
 figure(2); imagesc(im2); axis image; drawnow;
-[x2,y2] = getpts;
+x2 = 1.0e+03 * [0.2204; 0.6105; 0.8568; 0.4971; 1.1196; 1.7089; 0.9287; 1.6176];
+y2 = [180.8458; 111.6816; 416.0043; 601.3646; 532.2003; 698.1945; 894.6210; 562.6326];
 figure(2); imagesc(im2); axis image; hold on
 for i=1:length(x2)
    h=plot(x2(i),y2(i),'*'); set(h,'Color','g','LineWidth',2);

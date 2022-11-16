@@ -1,5 +1,5 @@
-C2coordtoC1 = rotation * trans * [trans2(:,4)];
-rotC2C1 = inv(rotation2) * rotation;
+C2coordtoC1 = rotation * [1,0,0,-parameter1.position(1);0,1,0,-parameter1.position(2);0,0,1,-parameter1.position(3);0,0,0,1] * [parameter2.position(1);parameter2.position(2);parameter2.position(3);1];
+rotC2C1 = rotation2 * rotation.';
 c1M = parameter1.Kmat * parameter1.foclen;
 c2M = parameter2.Kmat * parameter2.foclen;
 c2c1skew = [0 -C2coordtoC1(3) C2coordtoC1(2); C2coordtoC1(3) 0 -C2coordtoC1(1); -C2coordtoC1(2) C2coordtoC1(1) 0];

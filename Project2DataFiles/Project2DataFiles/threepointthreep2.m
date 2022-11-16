@@ -1,8 +1,12 @@
+% load images
 im = imread('im1corrected.jpg');
 im2 = imread('im2corrected.jpg');
 figure(1); imagesc(im);
+% for your convenience, we have manually selected points for the person,
+% dorrway, and the camera, and stored them here
 selected_xpts_l = [1.0e+03 *[1.1250;1.1169] [568.7451;558.0487] 1.0e+03 *[1.4619;1.4619]];
 selected_ypts_l = [[290.3837;545.7326] [392.9419;717.3605] [256.8953;256.8953]];
+% plotting the points
 hold on;
 for j=1:3
 for i=1:2
@@ -26,7 +30,9 @@ end
 end
 hold off;
 
+% go through each task (doorway, person, camera)
 for ind=1:3
+    % load points
     xpts_l = selected_xpts_l(:,ind);
     ypts_l = selected_ypts_l(:,ind);
     xpts_r = selected_xpts_r(:,ind);
@@ -35,6 +41,7 @@ for ind=1:3
     pts_l = [xpts_l.'; ypts_l.'; [1 1]];
     pts_r = [xpts_r.'; ypts_r.'; [1 1]];
     
+    % similar to 3.2, we reconstruct the 3D points
     c1 = zeros(3,2);
     c2 = zeros(3,2);
     v1 = zeros(3,2);
@@ -42,6 +49,7 @@ for ind=1:3
     result= zeros(3,2);
     
     for pix = 1:2
+        % reconstruct the 3D points
         trans = [[1 0 0 ; 0 1 0; 0 0 1;0 0 0] translation(:,4)];
         trans2 = [[1 0 0 ; 0 1 0; 0 0 1; 0 0 0] translation2(:,4)];
         c1(:,pix) = (-rotation(1:3,1:3).' * trans(1:3,4));
@@ -53,6 +61,8 @@ for ind=1:3
         lambda = inv(v_vec)*(c2(1:2,pix) - c1(1:2,pix));
         result(:,pix) = c1(:,pix) + v1(:,pix)*lambda(1);
     end
+    % once we have the 3D points, we just calculate the difference along
+    % the z-axis for each pair of points
     switch ind
         case 1
             disp('Calculating height of the doorway');

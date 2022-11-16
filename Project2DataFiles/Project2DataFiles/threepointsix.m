@@ -1,14 +1,20 @@
+% we modified the plotting part of the eight-point algorithm code, instead
+% of plotting, we go through each point and calculate the distance between
+% that point and its epipolar lone
 im = imread('im1corrected.jpg');
 im2 = imread('im2corrected.jpg');
 
 %overlay epipolar lines on im2
 for f_ind = 1:2
+    % 1: fundamental matrix derived using intrinsic parameters
+    % 2: F matrix from eight_point algorithm
     if(f_ind == 1)
         fundamentalMatrix = fundamentalC2C1;
     else
         fundamentalMatrix = F;
     end
     L = fundamentalMatrix * [res1(1,:);res1(2,:);ones(1,length(res1))];
+    % store the sum of the distances
     distance_l = 0;
     distance_r = 0;
     [nr,nc,nb] = size(im2);
@@ -22,7 +28,7 @@ for f_ind = 1:2
            % Find the denominator for our point-to-line distance formula.
 	       denominator = sqrt((xhi - xlo) ^ 2 + (yhi - ylo) ^ 2);
 	    
-	       % Compute the distance.
+	       % Compute the distance and sum it
 	       distance = numerator ./ denominator;
            distance_r = distance_r + distance;
         else
@@ -52,7 +58,7 @@ for f_ind = 1:2
            % Find the denominator for our point-to-line distance formula.
 	       denominator = sqrt((xhi - xlo) ^ 2 + (yhi - ylo) ^ 2);
 	    
-	       % Compute the distance.
+	       % Compute the distance and store it
 	       distance = numerator ./ denominator;
            distance_l = distance_l + distance;
         else
@@ -68,6 +74,7 @@ for f_ind = 1:2
            distance_l = distance_l + distance;
         end
     end
+    % sum the distances from two images and output it
     total_distance = distance_l + distance_r;
     if(f_ind == 1)
         disp('------ RESULT ------');

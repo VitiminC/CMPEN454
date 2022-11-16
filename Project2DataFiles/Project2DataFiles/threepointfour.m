@@ -1,12 +1,20 @@
+% calculating F matrix
+% c2 in c1 coordination system
 C2coordtoC1 = rotation * [1,0,0,-parameter1.position(1);0,1,0,-parameter1.position(2);0,0,1,-parameter1.position(3);0,0,0,1] * [parameter2.position(1);parameter2.position(2);parameter2.position(3);1];
+% relative rotation matrix
 rotC2C1 = rotation2 * rotation.';
+% M1 and M2 matrices
 c1M = parameter1.Kmat * parameter1.foclen;
 c2M = parameter2.Kmat * parameter2.foclen;
+% generate skew matrix
 c2c1skew = [0 -C2coordtoC1(3) C2coordtoC1(2); C2coordtoC1(3) 0 -C2coordtoC1(1); -C2coordtoC1(2) C2coordtoC1(1) 0];
+% calculate fundamental matrix
 fundamentalC2C1 = inv(c2M).'*rotC2C1(1:3,1:3) * c2c1skew * inv(c1M);
 
 im = imread('im1corrected.jpg');
 im2 = imread('im2corrected.jpg');
+% below is the lines plotting from the eight-point algorithm sample code
+
 colors =  'bgrcmykbgrcmykbgrcmykbgrcmykbgrcmykbgrcmykbgrcmyk';
 %overlay epipolar lines on im2
 x1 = 1.0e+03 * [1.1288; 1.4303; 1.6820; 0.9298; 1.5093; 0.9795; 0.3327; 1.8722];

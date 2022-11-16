@@ -1,3 +1,4 @@
+% we modified the sample eight-point algorithm
 im = imread('im1corrected.jpg');
 im2 = imread('im2corrected.jpg');
 
@@ -5,7 +6,7 @@ im2 = imread('im2corrected.jpg');
 figure(1); imagesc(im); axis image; drawnow;
 figure(2); imagesc(im2); axis image; drawnow;
 
-
+% manually selected points are stored here
 x1 = 1.0e+03 * [1.1288; 1.4303; 1.6820; 0.9298; 1.5093; 0.9795; 0.3327; 1.8722];
 y1 = [293.1829; 222.9390; 571.2317; 600.5000; 711.7195; 937.0854; 708.7927; 942.9390];
 
@@ -28,6 +29,8 @@ for i=1:length(x2)
 end
 hold off
 drawnow;
+
+% feel free to put a break point here and view the 8 points on each image
 
 %do Hartley preconditioning
 savx1 = x1; savy1 = y1; savx2 = x2; savy2 = y2;
